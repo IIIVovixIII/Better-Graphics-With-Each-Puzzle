@@ -7,8 +7,8 @@ public class WallCollisionScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the collision is with a GameObject tagged  "Wall"
-        if (collision.gameObject.CompareTag("Wall"))
+        // Check if the collision is with a GameObject tagged  "Player"
+        if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("HELLO");
             // Deactivate the specified GameObject
