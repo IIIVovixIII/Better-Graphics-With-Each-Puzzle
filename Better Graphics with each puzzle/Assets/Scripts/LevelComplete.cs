@@ -9,6 +9,9 @@ public class LevelComplete : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        SceneManager.LoadScene(scene);
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(scene);
+        }
     }
 }
