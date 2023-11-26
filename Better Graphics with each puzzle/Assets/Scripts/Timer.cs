@@ -1,56 +1,53 @@
 using UnityEngine;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    private const string countKey = "MyCount";
-    private int count;
+    public TextMeshProUGUI timerText; // Reference to the TextMeshPro text object
+
+    private const string timerKey = "MyTimer";
+    public float timer;
 
     void Start()
     {
-        // Load the count from PlayerPrefs when the scene starts
-        count = PlayerPrefs.GetInt(countKey, 0);
-        Debug.Log("Current Count: " + count);
+        // Load the timer from PlayerPrefs when the scene starts
+        timer = PlayerPrefs.GetFloat(timerKey, 0f);
+        Debug.Log("Current Timer: " + timer);
+
+        // Start counting time
+        InvokeRepeating("IncreaseTimer", 1f, 1f);
     }
 
-    void Update()
+    void IncreaseTimer()
     {
-        // Example: Increase count when spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
+        timer++;
+        UpdateTimerText(); // Update the timer text on each increment
+
+        // Save the updated timer to PlayerPrefs
+        PlayerPrefs.SetFloat(timerKey, timer);
+        PlayerPrefs.Save();
+    }
+
+    void UpdateTimerText()
+    {
+        // Update the TextMeshPro text object with the timer value
+        if (timerText != null)
         {
-            IncreaseCount();
+            timerText.text = "Time: " + timer.ToString("F0"); // F0 for displaying whole numbers
         }
     }
 
-    void IncreaseCount()
+    void OnApplicationQuit()
     {
-        count++;
-        Debug.Log("Count increased to: " + count);
-
-        // Save the updated count to PlayerPrefs
-        PlayerPrefs.SetInt(countKey, count);
-        PlayerPrefs.Save();
+        // Reset the timer when the application is about to quit (game closes)
+        ResetTimer();
     }
 
-    // This method can be used to reset the count if needed
-    public void ResetCount()
+    void ResetTimer()
     {
-        count = 0;
-        PlayerPrefs.SetInt(countKey, count);
+        timer = 0f;
+        PlayerPrefs.SetFloat(timerKey, timer);
         PlayerPrefs.Save();
-        Debug.Log("Count reset to zero.");
-    }
-
-    // Clear the PlayerPrefs data (for testing or when needed)
-    public void ClearPlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-        Debug.Log("PlayerPrefs data cleared.");
-    }
-
-    void OnDestroy()
-    {
-        // Save count when the script is destroyed or the scene changes
-        PlayerPrefs.SetInt(countKey, count);
-        PlayerPrefs.Save();
+        Debug.Log("Timer reset to zero.");
     }
 }

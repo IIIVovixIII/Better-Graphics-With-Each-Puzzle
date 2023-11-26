@@ -6,15 +6,18 @@ public class Move : MonoBehaviour
     public float jumpForce = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+    public float normalGravityScale = 2f; // Gravity scale for normal gravity
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool hasJumped;
+    private bool isGravityInverted = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = normalGravityScale; // Set initial gravity scale
     }
 
     void Update()
@@ -41,14 +44,23 @@ public class Move : MonoBehaviour
             hasJumped = true;
         }
 
+        // Check for key press to invert gravity
+//        if (Input.GetKeyDown(KeyCode.G))
+ ////       {
+ //           InvertGravity();
+//        }
+
         // Apply gravity modifications for a more realistic jump feel
-        if (rb.velocity.y < 0)
+        if (!isGrounded)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
 
@@ -58,6 +70,7 @@ public class Move : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
+   
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Reset the hasJumped flag when colliding with the ground
