@@ -6,13 +6,14 @@ public class Move : MonoBehaviour
     public float jumpForce = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
-    public float normalGravityScale = 2f; // Gravity scale for normal gravity
+    public float normalGravityScale = 1f; // Gravity scale for normal gravity
+    public AudioSource boing;
+    public bool doBoing = true;
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool hasJumped;
-    private bool isGravityInverted = false;
 
     void Start()
     {
@@ -36,23 +37,37 @@ public class Move : MonoBehaviour
 
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            if (!doBoing)
+            {
+                doBoing = true;
+            }
+            else
+            {
+                doBoing = false;
+            }
+        }
+        
 
-        // Check for jump input and if the player is grounded
+            // Check for jump input and if the player is grounded
         if (Input.GetButtonDown("Jump") && isGrounded && !hasJumped)
         {
+            if (doBoing == true)
+            {
+                boing.Play();
+            }
             Jump();
             hasJumped = true;
         }
 
-        // Check for key press to invert gravity
-//        if (Input.GetKeyDown(KeyCode.G))
- ////       {
- //           InvertGravity();
-//        }
-
-        // Apply gravity modifications for a more realistic jump feel
         if (!isGrounded)
         {
+            // Check if the player is moving left or right in the air
+
+            // Apply horizontal movement while in the air
+            rb.velocity += new Vector2(horizontalInput * speed * Time.deltaTime, 0);
+
             if (rb.velocity.y < 0)
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
