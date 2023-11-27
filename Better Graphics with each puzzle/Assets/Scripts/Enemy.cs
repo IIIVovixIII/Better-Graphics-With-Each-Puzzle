@@ -3,37 +3,51 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Adjust the speed as needed
-    public Transform leftPoint; // Left limit of movement
-    public Transform rightPoint; // Right limit of movement
+    public float moveSpeed = 2.0f;
+    public float moveDistance = 5.0f; // Adjust this to control how far it moves
+    public bool startMovingRight = true;
 
-    private bool movingRight = true;
+    private bool movingRight;
+    private Vector3 initialPosition;
 
-    void Update()
+    private void Start()
     {
-        // Move the enemy
-        if (movingRight)
-            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-        else
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        initialPosition = transform.position;
+        movingRight = startMovingRight;
+    }
 
-        // Check if the enemy reached the limits
-        if (transform.position.x >= rightPoint.position.x)
+    private void Update()
+    {
+        // Calculate the distance between the current position and the initial position
+        float distance = transform.position.x - initialPosition.x;
+
+        // Check if the enemy should change direction
+        if (distance >= moveDistance)
         {
             movingRight = false;
         }
-        else if (transform.position.x <= leftPoint.position.x)
+        else if (distance <= -moveDistance)
         {
             movingRight = true;
         }
+
+        // Move the enemy left or right based on the direction
+        if (movingRight)
+        {
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the collided object is the player
-        if (collision.gameObject.tag == "Wall")
+        // Check if the enemy touches the player (assuming the player has a "Player" tag)
+        if (other.CompareTag("Player"))
         {
-            // Restart the scene
+            // Reset the scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
