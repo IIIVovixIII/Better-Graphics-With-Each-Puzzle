@@ -37,6 +37,7 @@ public class Move : MonoBehaviour
 
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.N))
         {
             if (!doBoing)
@@ -60,14 +61,7 @@ public class Move : MonoBehaviour
             Jump();
             hasJumped = true;
         }
-
-        if (!isGrounded)
-        {
-            // Check if the player is moving left or right in the air
-
-            // Apply horizontal movement while in the air
-            rb.velocity += new Vector2(horizontalInput * speed * Time.deltaTime, 0);
-
+                
             if (rb.velocity.y < 0)
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -75,8 +69,7 @@ public class Move : MonoBehaviour
             else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-            }
-        }
+            }        
     }
 
     void Jump()
