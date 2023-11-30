@@ -803,6 +803,7 @@ MonoBehaviour:
   - Level 2
   - Level 3
   - Level 4
+  bestTime: 0
   timer: 0
 --- !u!4 &109355726
 Transform:
@@ -1938,7 +1939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &614704408
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,7 +2136,7 @@ Transform:
   m_GameObject: {fileID: 692541850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.4, y: 17.6, z: 0}
+  m_LocalPosition: {x: -24.4, y: -15.8, z: 0}
   m_LocalScale: {x: 7.5, y: 7.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

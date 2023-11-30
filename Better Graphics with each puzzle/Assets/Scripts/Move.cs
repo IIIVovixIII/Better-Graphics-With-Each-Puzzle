@@ -37,6 +37,16 @@ public class Move : MonoBehaviour
 
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // Apply a downward force
+            rb.velocity = new Vector2(rb.velocity.x, -jumpForce); // Use the jumpForce for a consistent effect
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            // Reset the downward force if required, or reset the gravity scale
+            rb.velocity = new Vector2(rb.velocity.x, 0); // Stop the extra downward movement
+        }
         if (Input.GetKeyDown(KeyCode.N))
         {
             if (!doBoing)
@@ -47,8 +57,7 @@ public class Move : MonoBehaviour
             {
                 doBoing = false;
             }
-        }
-        
+        }       
 
             // Check for jump input and if the player is grounded
         if (Input.GetButtonDown("Jump") && isGrounded && !hasJumped)
@@ -60,23 +69,15 @@ public class Move : MonoBehaviour
             Jump();
             hasJumped = true;
         }
-
-        if (!isGrounded)
+                
+        if (rb.velocity.y < 0)
         {
-            // Check if the player is moving left or right in the air
-
-            // Apply horizontal movement while in the air
-            rb.velocity += new Vector2(horizontalInput * speed * Time.deltaTime, 0);
-
-            if (rb.velocity.y < 0)
-            {
-                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            }
-            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
-            {
-                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-            }
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }        
     }
 
     void Jump()

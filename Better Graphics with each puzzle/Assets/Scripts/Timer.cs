@@ -100,7 +100,7 @@ public class Timer : MonoBehaviour
     public void StopTimerAndCheckBestTime()
     {
         isTimerRunning = false; // Stop the timer
-        Debug.Log("Option1");
+
 
         // Check if all levels are completed
         if (AreAllLevelsCompleted())
