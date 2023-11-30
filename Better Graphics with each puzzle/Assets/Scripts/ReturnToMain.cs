@@ -25,6 +25,7 @@ public class ReturnToMain : MonoBehaviour
             {
                 Time.timeScale = 1;
                 paused = false;
+                text.SetActive(false);
             }
         }
     }

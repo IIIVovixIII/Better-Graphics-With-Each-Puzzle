@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    public float` jumpForce = 10f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +16,6 @@ public class JumpPad : MonoBehaviour
                 // Apply a force to make the player jump
                 playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
             }
-        }
+        } 
     }
 }
