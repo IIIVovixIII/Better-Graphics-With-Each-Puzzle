@@ -10,7 +10,7 @@ public class WallCollisionScript : MonoBehaviour
         // Check if the collision is with a GameObject tagged  "Player"
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("HELLO");
+
             // Deactivate the specified GameObject
             if (objectToDeactivate != null)
             {

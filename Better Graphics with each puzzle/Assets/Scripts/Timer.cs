@@ -1,12 +1,16 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement; // Import this for scene management
 
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText; // Reference to the TextMeshPro text object
+    public TextMeshProUGUI highScoreText; // Reference to display the high score
 
     private const string timerKey = "MyTimer";
+    private const string highScoreKey = "HighScore";
     public float timer;
+    private bool isTimerRunning = true; // Flag to check if the timer is running
 
     void Start()
     {
@@ -18,14 +22,22 @@ public class Timer : MonoBehaviour
         InvokeRepeating("IncreaseTimer", 1f, 1f);
     }
 
+    void Update()
+    {
+        // Check if the current scene is Main Menu
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            StopTimerAndCheckHighScore();
+        }
+    }
+
     void IncreaseTimer()
     {
-        timer++;
-        UpdateTimerText(); // Update the timer text on each increment
-
-        // Save the updated timer to PlayerPrefs
-        PlayerPrefs.SetFloat(timerKey, timer);
-        PlayerPrefs.Save();
+        if (isTimerRunning)
+        {
+            timer++;
+            UpdateTimerText(); // Update the timer text on each increment
+        }
     }
 
     void UpdateTimerText()
@@ -37,9 +49,24 @@ public class Timer : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
+    public void StopTimerAndCheckHighScore()
     {
-        // Reset the timer when the application is about to quit (game closes)
+        isTimerRunning = false; // Stop the timer
+
+        float highScore = PlayerPrefs.GetFloat(highScoreKey, float.MaxValue);
+
+        if (timer < highScore) // Check if the current timer is a new high score
+        {
+            PlayerPrefs.SetFloat(highScoreKey, timer);
+            PlayerPrefs.Save();
+            if (highScoreText != null)
+            {
+                highScoreText.text = "High Score: " + timer.ToString("F0");
+            }
+            Debug.Log("New High Score: " + timer);
+        }
+
+        // Reset the timer for the next game
         ResetTimer();
     }
 
@@ -49,5 +76,12 @@ public class Timer : MonoBehaviour
         PlayerPrefs.SetFloat(timerKey, timer);
         PlayerPrefs.Save();
         Debug.Log("Timer reset to zero.");
+    }
+
+    // Call this method when starting a new game
+    public void StartNewGame()
+    {
+        isTimerRunning = true;
+        ResetTimer();
     }
 }
