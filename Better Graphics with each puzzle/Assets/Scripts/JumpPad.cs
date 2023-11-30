@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    public float` jumpForce = 10f;
+    public float jumpForce = 10f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
