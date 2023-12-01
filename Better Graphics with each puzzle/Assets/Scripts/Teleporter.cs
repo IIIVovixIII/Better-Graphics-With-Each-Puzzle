@@ -20,7 +20,7 @@ public class Teleporter : MonoBehaviour
     private void TeleportPlayer(Transform playerTransform)
     {
         // Set the player's position to the destination platform's position
-        playerTransform.position = destinationPlatform.position + 5;
+        playerTransform.position = destinationPlatform.position;
 
         // Optionally, add any extra effects or animations here
     }

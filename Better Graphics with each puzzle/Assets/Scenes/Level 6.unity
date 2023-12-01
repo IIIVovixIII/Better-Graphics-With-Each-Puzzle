@@ -1322,6 +1322,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 241658757}
+  bestTimeText: {fileID: 0}
+  levelsCompleted: 0000
+  levels:
+  - Level 1
+  - Level 2
+  bestTime: 0
   timer: 0
 --- !u!1 &1017084471
 GameObject:
@@ -3449,7 +3455,7 @@ Transform:
   m_GameObject: {fileID: 1859889241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 10.4, y: 5.02, z: 0}
+  m_LocalPosition: {x: 10.4, y: 7.4, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
