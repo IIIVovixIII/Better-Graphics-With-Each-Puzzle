@@ -1747,12 +1747,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1195337513}
   bestTimeText: {fileID: 492183537}
-  levelsCompleted: 00000000
+  levelsCompleted: 0000000000000000
   levels:
   - Level 1
   - Level 2
   - Level 3
   - Level 4
+  - Level 5
+  - Level 6
+  - Level 7
+  - Level 8
+  bestTime: 0
   timer: 0
 --- !u!4 &1954293551
 Transform:
