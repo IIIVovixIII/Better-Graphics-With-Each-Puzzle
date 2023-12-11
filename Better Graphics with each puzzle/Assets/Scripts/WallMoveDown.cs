@@ -30,7 +30,7 @@ public class WallMoveDown : MonoBehaviour
         if (movingDown)
         {
             // Move the wall down
-            wall.transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            wall.transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
 
             // Check if the wall has moved the desired distance
             if (Vector3.Distance(initialPosition, wall.transform.position) >= moveDistance)

@@ -33,7 +33,6 @@ public class Move : MonoBehaviour
         Vector2 movement = new Vector2(horizontalInput, 0);
 
         // Normalize the movement vector to ensure consistent speed in all directions
-        movement.Normalize();
 
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
