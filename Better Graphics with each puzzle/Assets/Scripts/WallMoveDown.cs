@@ -8,6 +8,7 @@ public class WallMoveDown : MonoBehaviour
     public float moveDistance = 10.0f; // Adjust this to control how far it moves
     public GameObject wall;
     private bool movingDown;
+    public AudioSource StoneMove;
     private Vector3 initialPosition;
 
     void Start()
@@ -31,11 +32,16 @@ public class WallMoveDown : MonoBehaviour
         {
             // Move the wall down
             wall.transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+            if (!StoneMove.isPlaying)
+            {
+                StoneMove.Play();
+            }
 
             // Check if the wall has moved the desired distance
             if (Vector3.Distance(initialPosition, wall.transform.position) >= moveDistance)
             {
                 movingDown = false;
+                StoneMove.Stop(); // Stop the sound when movement ends
             }
         }
     }
