@@ -35,11 +35,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 8.unity
     guid: 86d6e9ce7e634f7408ac5c4beafb8432
-  - enabled: 1
-    path: Assets/Scenes/Level 9.unity
-    guid: ebc1466e2a15f9240adfd9b7c72ac856
-  - enabled: 1
-    path: Assets/Scenes/TestingGrounds.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
