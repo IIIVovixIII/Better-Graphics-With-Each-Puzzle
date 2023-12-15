@@ -93,7 +93,7 @@ public class Timer : MonoBehaviour
         // Update the TextMeshPro text object with the timer value
         if (timerText != null)
         {
-            timerText.text = "Time: " + timer.ToString("F0"); // F0 for displaying whole numbers
+            timerText.text = "Your Time: " + timer.ToString("F0"); // F0 for displaying whole numbers
         }
     }
 

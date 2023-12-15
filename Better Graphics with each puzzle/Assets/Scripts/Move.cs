@@ -32,8 +32,6 @@ public class Move : MonoBehaviour
         // Calculate the movement direction
         Vector2 movement = new Vector2(horizontalInput, 0);
 
-        // Normalize the movement vector to ensure consistent speed in all directions
-
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.S))
