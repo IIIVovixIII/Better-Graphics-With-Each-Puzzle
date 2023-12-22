@@ -25,15 +25,27 @@ EditorBuildSettings:
     guid: cccacc103c6be564d95f5bcdff4ec752
   - enabled: 1
     path: Assets/Scenes/Level 5.unity
-    guid: a78e46aedea137a49ab9e1c3e9b2533f
-  - enabled: 1
-    path: Assets/Scenes/Level 6.unity
     guid: cc688bbcbe3024740bcb1d531be120bd
   - enabled: 1
-    path: Assets/Scenes/Level 7.unity
+    path: Assets/Scenes/Level 6.unity
     guid: ea115caf94325bf4dbec77c5aede8ca5
+  - enabled: 1
+    path: Assets/Scenes/Level 7.unity
+    guid: 5b82a9953130cd14a8ec34daeb17375c
   - enabled: 1
     path: Assets/Scenes/Level 8.unity
     guid: 86d6e9ce7e634f7408ac5c4beafb8432
+  - enabled: 1
+    path: Assets/Scenes/Level 10.unity
+    guid: a78e46aedea137a49ab9e1c3e9b2533f
+  - enabled: 1
+    path: Assets/Scenes/IntroduceOrange.unity
+    guid: cd831fa1937bf6c45a7349bc9497bdf0
+  - enabled: 1
+    path: Assets/Scenes/IntroduceApple.unity
+    guid: 5ea70ba9c28e3604ebc349d2d384a1d2
+  - enabled: 1
+    path: Assets/Scenes/IntroducePear.unity
+    guid: b5f15fcdbdcf4b847b971a8d33ff1af7
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

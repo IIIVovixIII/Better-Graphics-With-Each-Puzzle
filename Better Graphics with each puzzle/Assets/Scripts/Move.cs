@@ -34,12 +34,12 @@ public class Move : MonoBehaviour
 
         // Move the GameObject
         transform.Translate(movement * speed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             // Apply a downward force
             rb.velocity = new Vector2(rb.velocity.x, -jumpForce); // Use the jumpForce for a consistent effect
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             // Reset the downward force if required, or reset the gravity scale
             rb.velocity = new Vector2(rb.velocity.x, 0); // Stop the extra downward movement
