@@ -36,8 +36,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 8.unity
     guid: 86d6e9ce7e634f7408ac5c4beafb8432
   - enabled: 1
-    path: Assets/Scenes/Level 10.unity
+    path: Assets/Scenes/Level 9.unity
     guid: a78e46aedea137a49ab9e1c3e9b2533f
+  - enabled: 1
+    path: Assets/Scenes/Level 10.unity
+    guid: 06ca3bda004d35447b224999c3a057fc
   - enabled: 1
     path: Assets/Scenes/IntroduceOrange.unity
     guid: cd831fa1937bf6c45a7349bc9497bdf0

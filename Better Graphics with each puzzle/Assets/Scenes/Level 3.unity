@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8211329cc22d7eb49b56bbc31b627c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 12
+  scene: 13
 --- !u!50 &297580408
 Rigidbody2D:
   serializedVersion: 4
@@ -4413,6 +4413,7 @@ GameObject:
   - component: {fileID: 1682729211}
   - component: {fileID: 1682729212}
   - component: {fileID: 1682729213}
+  - component: {fileID: 1682729214}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4429,7 +4430,7 @@ Transform:
   m_GameObject: {fileID: 1682729205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.42, y: -15.1, z: 0}
+  m_LocalPosition: {x: -27.56, y: -15.4, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7.13869}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4682,6 +4683,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2050632346}
   paused: 0
+--- !u!114 &1682729214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682729205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6eb1b748d50449a1b30a231b4613f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725043879
 GameObject:
   m_ObjectHideFlags: 0
