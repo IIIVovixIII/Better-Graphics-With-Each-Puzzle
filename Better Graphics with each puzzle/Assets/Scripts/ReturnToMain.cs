@@ -11,22 +11,43 @@ public class ReturnToMain : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
             if (!paused)
             {
-                Time.timeScale = 0;
                 paused = true;
-                text.SetActive(true);
+                Time.timeScale = 1;
+                text.SetActive(false);
             }
             else
             {
-                Time.timeScale = 1;
+                Time.timeScale = 0;
                 paused = false;
-                text.SetActive(false);
+                text.SetActive(true);
             }
+            //SceneManager.LoadScene(0);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // Reset the current scene by loading it again
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }
+    }
+    public void mainmenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void levelselect()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void resume()
+    {
+        paused = true;
+        Time.timeScale = 1;
+        text.SetActive(false);
+    }
+    public void quit()
+    {
+        Application.Quit();
     }
 }

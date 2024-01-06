@@ -22,6 +22,8 @@ public class Timer : MonoBehaviour
     {
         // Load the timer from PlayerPrefs when the scene starts
         timer = PlayerPrefs.GetFloat(timerKey, 0f);
+        bestTime = PlayerPrefs.GetFloat(bestTimeKey, 0f); // Load best time
+
         LoadLevelCompletions();
         Debug.Log("Current Timer: " + timer);
         if (SceneManager.GetActiveScene().name == "Level 1")
@@ -32,6 +34,8 @@ public class Timer : MonoBehaviour
         }
         // Start counting time
         InvokeRepeating("IncreaseTimer", 1f, 1f);
+        bestTimeText.text = "Best Time: " + bestTime.ToString("F0");
+
     }
 
     void Update()
@@ -105,26 +109,16 @@ public class Timer : MonoBehaviour
         // Check if all levels are completed
         if (AreAllLevelsCompleted())
         {
-            bestTime = bestTime;
-            Debug.Log(bestTime);
             Debug.Log("All levels completed. Current timer: " + timer + ", Best time: " + bestTime);
 
             // Check if the current timer is a new best time and it's not zero
-            if(bestTime == 0)
+            if (bestTime == 0 || timer < bestTime)
             {
                 bestTime = timer;
-                PlayerPrefs.SetFloat(bestTimeKey, timer);
+                PlayerPrefs.SetFloat(bestTimeKey, bestTime); // Update best time
                 PlayerPrefs.Save();
-                bestTimeText.text = "Best Time: " + timer.ToString("F0");
-            }
-            if (timer < bestTime)
-            { 
-                PlayerPrefs.SetFloat(bestTimeKey, timer);
-                PlayerPrefs.Save();
-                bestTimeText.text = "Best Time: " + timer.ToString("F0");
-                timerText.text = "Your Time: " + timer.ToString("F0"); // F0 for displaying whole numbers
-
-                Debug.Log("New Best Time: " + timer);
+                bestTimeText.text = "Best Time: " + bestTime.ToString("F0");
+                Debug.Log("New Best Time: " + bestTime);
             }
         }
         else
@@ -132,9 +126,17 @@ public class Timer : MonoBehaviour
             //Debug.Log("Not all levels completed. Best time not updated.");
         }
     }
+    public void resetBest()
+    {
 
+        bestTime = 0; // Reset bestTime to zero
 
-
+        // Update the PlayerPrefs to reset the stored best time
+        PlayerPrefs.SetFloat(bestTimeKey, bestTime);
+        PlayerPrefs.Save();
+        // Update the UI to reflect the reset best time
+        bestTimeText.text = "Best Time: " + bestTime.ToString("F0");
+    }
     void ResetTimer()
     {
         timer = 0f;
