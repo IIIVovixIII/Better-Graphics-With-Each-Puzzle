@@ -50,5 +50,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroducePear.unity
     guid: b5f15fcdbdcf4b847b971a8d33ff1af7
+  - enabled: 1
+    path: Assets/Scenes/Level 11.unity
+    guid: f6080858b0c466a4bb12aba5bf954554
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -18,8 +18,6 @@ public class BlueberrySplit : MonoBehaviour
     {
         GameObject berry1 = Instantiate(singleBlueberryPrefab1, transform.position + Vector3.right * 0.5f, Quaternion.identity);
         GameObject berry2 = Instantiate(singleBlueberryPrefab2, transform.position + Vector3.left * 0.5f, Quaternion.identity);
-
-
         Destroy(gameObject);
     }
 }
